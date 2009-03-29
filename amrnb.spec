@@ -1,6 +1,6 @@
 Name:           amrnb
 Version:        7.0.0.2
-Release:        4%{?dist}
+Release:        5%{?dist}
 Summary:        Adaptive Multi-Rate (AMR) Speech Codec
 Group:          System Environment/Libraries
 License:        Distributable
@@ -80,6 +80,9 @@ rm -rf $RPM_BUILD_ROOT
 
 
 %changelog
+* Sun Mar 29 2009 Thorsten Leemhuis <fedora [AT] leemhuis [DOT] info> - 7.0.0.2-5
+- rebuild for new F11 features
+
 * Sat Aug 16 2008 Hans de Goede <j.w.r.degoede@hhs.nl> 7.0.0.2-4
 - wget the needed sources in %%prep instead of letting the Makefile do it
   so that we can use an IP address to work around there being no
