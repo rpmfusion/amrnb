@@ -1,12 +1,11 @@
 Name:           amrnb
 Version:        7.0.0.2
-Release:        7%{?dist}
+Release:        8%{?dist}
 Summary:        Adaptive Multi-Rate (AMR) Speech Codec
 Group:          System Environment/Libraries
 License:        Distributable
 URL:            http://www.penguin.cz/~utx/amr
 Source0:        http://ftp.penguin.cz/pub/users/utx/amr/%{name}-%{version}.tar.bz2
-BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 BuildRequires:  wget unzip
 
 %description
@@ -39,7 +38,7 @@ developing applications that use %{name}.
 %setup -q
 # Note we do the wget ourselves so that we can use in IP in the URL as there
 # is no /etc/resolv.conf in the buildroot
-wget ftp://195.238.226.15/Specs/archive/26_series/26.104/26104-700.zip
+wget ftp://195.238.226.35/Specs/archive/26_series/26.104/26104-700.zip
 
 
 %build
@@ -50,13 +49,8 @@ make %{?_smp_mflags}
 
 
 %install
-rm -rf $RPM_BUILD_ROOT
 make install DESTDIR=$RPM_BUILD_ROOT
 find $RPM_BUILD_ROOT -name '*.la' -exec rm -f {} ';'
-
-
-%clean
-rm -rf $RPM_BUILD_ROOT
 
 
 %post -p /sbin/ldconfig
@@ -65,21 +59,21 @@ rm -rf $RPM_BUILD_ROOT
 
 
 %files
-%defattr (-,root,root,-)
 %doc AUTHORS ChangeLog COPYING NEWS README TODO readme.txt
 %{_libdir}/*.so.*
 
 %files tools
-%defattr (-,root,root,-)
 %{_bindir}/*
 
 %files devel
-%defattr (-,root,root,-)
 %{_includedir}/amrnb
 %{_libdir}/*.so
 
 
 %changelog
+* Fri May 30 2014 Hans de Goede <j.w.r.degoede@gmail.com> - 7.0.0.2-8
+- Fix FTBFS (rf#3243)
+
 * Tue Mar 12 2013 Nicolas Chauvet <kwizart@gmail.com> - 7.0.0.2-7
 - https://fedoraproject.org/wiki/Fedora_19_Mass_Rebuild
 
