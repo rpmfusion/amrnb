@@ -1,6 +1,6 @@
 Name:           amrnb
 Version:        11.0.0.0
-Release:        3%{?dist}
+Release:        4%{?dist}
 Summary:        Adaptive Multi-Rate (AMR) Speech Codec
 Group:          System Environment/Libraries
 License:        Distributable
@@ -71,6 +71,9 @@ find $RPM_BUILD_ROOT -name '*.la' -exec rm -f {} ';'
 
 
 %changelog
+* Thu Aug 31 2017 RPM Fusion Release Engineering <kwizart@rpmfusion.org> - 11.0.0.0-4
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_27_Mass_Rebuild
+
 * Sat Mar 25 2017 RPM Fusion Release Engineering <kwizart@rpmfusion.org> - 11.0.0.0-3
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_26_Mass_Rebuild
 
