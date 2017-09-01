@@ -7,7 +7,7 @@ License:        Distributable
 URL:            http://www.penguin.cz/~utx/amr
 Source0:        http://ftp.penguin.cz/pub/users/utx/amr/%{name}-%{version}.tar.bz2
 Source1:        http://www.3gpp.org/ftp/Specs/archive/26_series/26.104/26104-b00.zip
-BuildRequires:  wget unzip
+BuildRequires:  unzip
 
 %description
 Adaptive Multi-Rate Narrow-Band decoder and encoder library.
@@ -44,12 +44,12 @@ cp -p %{SOURCE0} .
 %configure --disable-static
 sed -i 's|^hardcode_libdir_flag_spec=.*|hardcode_libdir_flag_spec=""|g' libtool
 sed -i 's|^runpath_var=LD_RUN_PATH|runpath_var=DIE_RPATH_DIE|g' libtool
-make %{?_smp_mflags}
+%make_build
 
 
 %install
-make install DESTDIR=$RPM_BUILD_ROOT
-find $RPM_BUILD_ROOT -name '*.la' -exec rm -f {} ';'
+%make_install
+find %{buildroot} -name '*.la' -exec rm -f {} ';'
 
 
 %post -p /sbin/ldconfig
@@ -58,7 +58,8 @@ find $RPM_BUILD_ROOT -name '*.la' -exec rm -f {} ';'
 
 
 %files
-%doc AUTHORS ChangeLog COPYING NEWS README TODO readme.txt
+%doc AUTHORS ChangeLog NEWS README TODO readme.txt
+%license COPYING
 %{_libdir}/*.so.*
 
 %files tools
