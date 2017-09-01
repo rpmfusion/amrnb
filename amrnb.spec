@@ -37,7 +37,7 @@ developing applications that use %{name}.
 
 %prep
 %setup -q
-cp -p %{SOURCE0} .
+cp -p %{SOURCE1} .
 
 
 %build
