@@ -1,11 +1,12 @@
 Name:           amrnb
 Version:        11.0.0.0
-Release:        4%{?dist}
+Release:        5%{?dist}
 Summary:        Adaptive Multi-Rate (AMR) Speech Codec
 Group:          System Environment/Libraries
 License:        Distributable
 URL:            http://www.penguin.cz/~utx/amr
 Source0:        http://ftp.penguin.cz/pub/users/utx/amr/%{name}-%{version}.tar.bz2
+Source1:        http://www.3gpp.org/ftp/Specs/archive/26_series/26.104/26104-b00.zip
 BuildRequires:  wget unzip
 
 %description
@@ -36,9 +37,7 @@ developing applications that use %{name}.
 
 %prep
 %setup -q
-# Note we do the wget ourselves so that we can use in IP in the URL as there
-# is no /etc/resolv.conf in the buildroot
-wget ftp://195.238.226.35/Specs/archive/26_series/26.104/26104-b00.zip
+cp -p %{SOURCE0} .
 
 
 %build
@@ -71,6 +70,9 @@ find $RPM_BUILD_ROOT -name '*.la' -exec rm -f {} ';'
 
 
 %changelog
+* Fri Sep 01 2017 Nicolas Chauvet <kwizart@gmail.com> - 11.0.0.0-5
+- Avoid wget hack
+
 * Thu Aug 31 2017 RPM Fusion Release Engineering <kwizart@rpmfusion.org> - 11.0.0.0-4
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_27_Mass_Rebuild
 
