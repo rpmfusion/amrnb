@@ -8,6 +8,7 @@ URL:            http://www.penguin.cz/~utx/amr
 Source0:        http://ftp.penguin.cz/pub/users/utx/amr/%{name}-%{version}.tar.bz2
 Source1:        http://www.3gpp.org/ftp/Specs/archive/26_series/26.104/26104-b00.zip
 BuildRequires:  unzip
+BuildRequires:  gcc-c++
 
 %description
 Adaptive Multi-Rate Narrow-Band decoder and encoder library.
